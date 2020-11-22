@@ -17,23 +17,36 @@ class TodoConteiner extends React.Component {
   }
   componentDidMount() { this.inputRef.current.focus();
   }
-
   onTextChange = (e) => {
     this.setState({ inputText: e.target.value, })
   };
-
   onButtonClick = (e) => {
     e.preventDefault();
     const oldArray = this.state.array;
     const inputText = this.state.inputText;
     this.setState({
-      array: [{
-        inputText: inputText
-      }, ...oldArray]}
+      array: [...oldArray, {
+        inputText: inputText,
+        id: oldArray.length+1,
+        check: false
+      }]}
       );
-    this.inputRef.current.focus()
+    this.inputRef.current.focus();
     this.inputRef.current.value = "";
   };
+
+ deleteTodo = (id) => {
+   const findElement =  this.state.array.findIndex(arr => (arr.id === id));
+   const newArray = [...this.state.array];
+   newArray.splice(findElement, 1);
+   this.setState({array: newArray });
+   this.inputRef.current.focus();
+   this.inputRef.current.value = "";
+ };
+
+  // deleteTodo =(id) => {
+  //   this.setState({array: this.state.array.filter(arr => arr.id !== id)})
+  // };
 
   render() {
     const {inputText, array } = this.state;
@@ -49,6 +62,7 @@ class TodoConteiner extends React.Component {
       <List inputText = {inputText}
             onTextChange ={this.onTextChange}
             array = {array}
+            deleteTodo ={this.deleteTodo}
 
       />
       </div>
