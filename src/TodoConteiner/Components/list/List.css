@@ -4,6 +4,14 @@
   display: flex;
   justify-content: space-between;
 }
+
+.li-conteiner-checkbox {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: line-through;
+}
 .ul-container{
   list-style: none;
 }

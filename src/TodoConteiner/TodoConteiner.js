@@ -28,7 +28,7 @@ class TodoConteiner extends React.Component {
       array: [...oldArray, {
         inputText: inputText,
         id: oldArray.length+1,
-        check: false
+        checkk: false
       }]}
       );
     this.inputRef.current.focus();
@@ -48,6 +48,24 @@ class TodoConteiner extends React.Component {
   //   this.setState({array: this.state.array.filter(arr => arr.id !== id)})
   // };
 
+  onItemCheck = (id) => (e) => {
+   const checket = e.target.checked;
+    const carrentArr = this.state.array.find(arr => arr.id === id);
+    carrentArr.checkk = checket;
+    const newArray = [];
+    this.state.array.forEach(arr => {
+    if (arr.id === id) {
+      newArray.push(carrentArr)    }
+      else
+      {newArray.push(arr)}
+    this.setState({array: newArray})
+    })
+  };
+  getComplied = () => {
+    return this.state.array.filter(arr => arr.checkk).length
+  };
+
+
   render() {
     const {inputText, array } = this.state;
     const inputRef = this.inputRef;
@@ -63,8 +81,18 @@ class TodoConteiner extends React.Component {
             onTextChange ={this.onTextChange}
             array = {array}
             deleteTodo ={this.deleteTodo}
+            onItemCheck = {this.onItemCheck}
 
       />
+      <footer>
+        <div>
+          Total : {this.state.array.length}
+        </div>
+        <div>
+          Completed :{this.getComplied()}
+        </div>
+
+      </footer>
       </div>
     )
   }

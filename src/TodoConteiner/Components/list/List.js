@@ -5,14 +5,17 @@ class List extends React.Component {
 
 
   render() {
-    const { array, deleteTodo } = this.props;
+    const { array, deleteTodo , onItemCheck } = this.props;
     return (
       <div>
         <ul className={"ul-container"}>
           {
             array.map((arr, index) => (
               <li key={arr.id}>
-                <div className={"li-conteiner"}>
+                <div className={`${ arr.checkk  ? "li-conteiner-checkbox"  : "li-conteiner"}`}>
+                  <div>
+                  <input type='checkbox' checked={arr.checkk} onChange={onItemCheck(arr.id)} />
+                  </div>
                   <div>
                     {index+1}
                   </div>
