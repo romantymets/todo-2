@@ -10,8 +10,10 @@ class Form extends React.Component {
     return (
       <div>
         <form onSubmit={onButtonClick}>
-          <input onChange={onTextChange} ref={inputRef}
+          <div className="form-group" >
+          <input onChange={onTextChange} ref={inputRef} className="form-control"
           />
+          </div>
           <button className={"btn btn-primary"}>
             Add Todo
           </button>

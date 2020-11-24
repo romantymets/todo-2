@@ -1,8 +1,9 @@
 import React from 'react'
 // import LoginContainer from "./containers/LoginContainer/LoginContainer";
 import Form from "./Components/form/form"
-import './TodoConteiner.css';
 import List from "./Components/list/List";
+import './TodoConteiner.css';
+
 
 
 
@@ -70,7 +71,7 @@ class TodoConteiner extends React.Component {
     const {inputText, array } = this.state;
     const inputRef = this.inputRef;
     return (
-      <div>
+      <div className='container'>
       <Form inputText = {inputText}
             onTextChange ={this.onTextChange}
             onButtonClick = {this.onButtonClick}
@@ -82,7 +83,6 @@ class TodoConteiner extends React.Component {
             array = {array}
             deleteTodo ={this.deleteTodo}
             onItemCheck = {this.onItemCheck}
-
       />
       <footer>
         <div>

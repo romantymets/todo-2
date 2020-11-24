@@ -1,17 +1,17 @@
-.li-conteiner {
+.liConteiner {
   width: 500px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
-.li-conteiner-checkbox {
+.liConteinerCheckbox {
   width: 500px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   text-decoration: line-through;
 }
-.ul-container{
+.ulContainer{
   list-style: none;
 }

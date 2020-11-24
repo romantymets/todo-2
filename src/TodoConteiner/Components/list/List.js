@@ -1,5 +1,5 @@
 import React from "react"
-import './List.css'
+import style from './List.module.css'
 
 class List extends React.Component {
 
@@ -8,11 +8,11 @@ class List extends React.Component {
     const { array, deleteTodo , onItemCheck } = this.props;
     return (
       <div>
-        <ul className={"ul-container"}>
+        <ul className={style.ulContainer}>
           {
             array.map((arr, index) => (
               <li key={arr.id}>
-                <div className={`${ arr.checkk  ? "li-conteiner-checkbox"  : "li-conteiner"}`}>
+                <div className={`${ arr.checkk  ? style.liConteinerCheckbox  : style.liConteiner}`}>
                   <div>
                   <input type='checkbox' checked={arr.checkk} onChange={onItemCheck(arr.id)} />
                   </div>
