@@ -10,8 +10,19 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   text-decoration: line-through;
 }
-.ulContainer{
+.ulContainer {
   list-style: none;
+}
+.item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid #61dafb;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
