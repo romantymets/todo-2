@@ -11,11 +11,16 @@ class TodoConteiner extends React.Component {
     this.state = {
       inputText: "",
       array: [],
+      date: new Date(),
     };
     this.inputRef = React.createRef();
   }
+
   componentDidMount() {
     this.inputRef.current.focus();
+    setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
   }
 
   onTextChange = (e) => {
@@ -35,6 +40,7 @@ class TodoConteiner extends React.Component {
           checkk: false,
         },
       ],
+      inputText: "",
     });
     this.inputRef.current.focus();
     this.inputRef.current.value = "";
@@ -72,27 +78,39 @@ class TodoConteiner extends React.Component {
   };
 
   render() {
-    const { inputText, array } = this.state;
+    const { inputText, array, date } = this.state;
     const inputRef = this.inputRef;
     return (
       <div className="container">
-        <Form
-          inputText={inputText}
-          onTextChange={this.onTextChange}
-          onButtonClick={this.onButtonClick}
-          inputRef={inputRef}
-        />
-        <List
-          inputText={inputText}
-          onTextChange={this.onTextChange}
-          array={array}
-          deleteTodo={this.deleteTodo}
-          onItemCheck={this.onItemCheck}
-        />
-        <footer>
-          <div>Total : {array.length}</div>
-          <div>Completed :{this.getComplied()}</div>
-        </footer>
+        <div className="row">
+          <div className="col">
+            <h1> Add Todo </h1>
+            <div className="col">
+              <Form
+                inputText={inputText}
+                onTextChange={this.onTextChange}
+                onButtonClick={this.onButtonClick}
+                inputRef={inputRef}
+              />
+            </div>
+            <List
+              inputText={inputText}
+              onTextChange={this.onTextChange}
+              array={array}
+              deleteTodo={this.deleteTodo}
+              onItemCheck={this.onItemCheck}
+            />
+            <div className="row">
+              <div className="col">
+                <footer>
+                  <div>Total : {array.length}</div>
+                  <div>Completed :{this.getComplied()}</div>
+                  <clock> {date.toLocaleTimeString()}</clock>
+                </footer>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

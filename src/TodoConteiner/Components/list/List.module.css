@@ -1,22 +1,25 @@
 .liConteiner {
-  width: 500px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .liConteinerCheckbox {
-  width: 500px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-decoration: line-through;
+  background: #38fb9c;
+  border-radius: 5px;
+  width: 100%;
 }
 .ulContainer {
   list-style: none;
+  width: 100%;
 }
 .item {
+  width: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 5px;

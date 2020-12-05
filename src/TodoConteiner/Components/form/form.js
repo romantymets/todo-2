@@ -8,16 +8,24 @@ class Form extends React.Component {
     const { onTextChange, onButtonClick, inputRef } = this.props;
     return (
       <>
-        <form onSubmit={onButtonClick}>
-          <div className="form-group">
-            <input
-              onChange={onTextChange}
-              ref={inputRef}
-              className="form-control"
-            />
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <form onSubmit={onButtonClick}>
+                <div className="form-group">
+                  <input
+                    onChange={onTextChange}
+                    ref={inputRef}
+                    className="form-control"
+                    required
+                  />
+                  <div className="invalid-feedback">Please enter</div>
+                </div>
+                <Button className={"btn btn-primary"}>Add Todo</Button>
+              </form>
+            </div>
           </div>
-          <Button className={"btn btn-primary"}>Add Name</Button>
-        </form>
+        </div>
       </>
     );
   }
