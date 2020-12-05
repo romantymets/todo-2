@@ -33,11 +33,11 @@ class List extends React.Component {
                         <div className="col-2">
                           <Button
                             type="buttun"
-                            className={"btn btn-danger"}
+                            className="btn btn-danger"
                             onClick={() => deleteTodo(arr.id)}
                           >
                             {" "}
-                            X
+                            x
                           </Button>
                         </div>
                       </div>

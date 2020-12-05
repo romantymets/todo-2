@@ -1,3 +1,7 @@
 .col {
   margin-top: 20px;
+  /*color: rgb(127 127 127);*/
+}
+.color {
+  color: rgba(139, 143, 255, 0.1);
 }

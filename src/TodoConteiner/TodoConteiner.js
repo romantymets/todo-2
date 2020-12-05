@@ -82,9 +82,9 @@ class TodoConteiner extends React.Component {
     const inputRef = this.inputRef;
     return (
       <div className="container">
-        <div className="row">
+        <div className="row ">
           <div className="col">
-            <h1> Add Todo </h1>
+            <h1 className="color"> Add Todo </h1>
             <div className="col">
               <Form
                 inputText={inputText}

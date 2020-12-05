@@ -9,8 +9,8 @@ class Form extends React.Component {
     return (
       <>
         <div className="container">
-          <div className="row">
-            <div className="col">
+          <div className="row justify-content-center">
+            <div className="col-8">
               <form onSubmit={onButtonClick}>
                 <div className="form-group">
                   <input
