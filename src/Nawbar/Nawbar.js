@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./Nawbar.css";
 
@@ -14,7 +15,7 @@ class Nawbar extends React.Component {
     return (
       <div className="container">
         <nav className="navbar navbar-expand-md navbar-light">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             MyTODØ
           </a>
           <button
@@ -31,14 +32,16 @@ class Nawbar extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item ">
-                <a className="nav-link" href="#">
-                  Home <span className="sr-only">(current)</span>
-                </a>
+                <Link className="nav-link" to="/">
+                  {" "}
+                  Home{" "}
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  About
-                </a>
+                <Link className="nav-link" to="/about">
+                  {" "}
+                  About{" "}
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
