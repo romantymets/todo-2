@@ -15,8 +15,7 @@ class Nawbar extends React.Component {
       <div className="container">
         <nav className="navbar navbar-expand-md navbar-light">
           <a className="navbar-brand" href="#">
-            {" "}
-            MyTODØ{" "}
+            MyTODØ
           </a>
           <button
             className="navbar-toggler"

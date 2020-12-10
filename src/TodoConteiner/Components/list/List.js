@@ -15,13 +15,13 @@ class List extends React.Component {
                   <div className="col-12">
                     <li key={arr.id} className={style.item}>
                       <div
-                        className={`${
+                        className={
                           arr.checkk
                             ? style.liConteinerCheckbox
                             : style.liConteiner
-                        }`}
+                        }
                       >
-                        <div className="col-1">
+                        <div className={`col-1`}>
                           <input
                             type="checkbox"
                             checked={arr.checkk}
