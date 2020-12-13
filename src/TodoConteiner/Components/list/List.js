@@ -4,37 +4,46 @@ import Button from "../../../components/Button/Button";
 
 class List extends React.Component {
   render() {
-    const { array, deleteTodo, onItemCheck } = this.props;
+    const {
+      array,
+      deleteTodo,
+      onItemCheck,
+      isTodoItemsRemoving,
+      isTodoItemsUpdating,
+    } = this.props;
     return (
       <div className="container">
         <div className="row">
           <ul className={style.ulContainer}>
-            {array.map((arr, index) => (
+            {array.map((todo, index) => (
               <div className="container">
                 <div className="row">
                   <div className="col-12">
-                    <li key={arr.id} className={style.item}>
+                    <li key={todo._id} className={style.item}>
                       <div
                         className={
-                          arr.checkk
+                          todo.completed
                             ? style.liConteinerCheckbox
                             : style.liConteiner
                         }
                       >
                         <div className={`col-1`}>
                           <input
+                            disabled={isTodoItemsUpdating === todo._id}
                             type="checkbox"
-                            checked={arr.checkk}
-                            onChange={onItemCheck(arr.id)}
+                            checked={todo.completed}
+                            onChange={onItemCheck(todo._id)}
                           />
                         </div>
                         <div className="col-1">{index + 1}</div>
-                        <div className="col-8">{arr.inputText}</div>
+                        <div className="col-8">{todo.title} </div>
                         <div className="col-2">
                           <Button
+                            disabled={isTodoItemsRemoving}
+                            isLoadin={isTodoItemsRemoving}
                             type="buttun"
                             className="btn btn-danger"
-                            onClick={() => deleteTodo(arr.id)}
+                            onClick={() => deleteTodo(todo._id)}
                           >
                             {" "}
                             x
