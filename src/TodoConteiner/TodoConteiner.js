@@ -1,6 +1,6 @@
 import React from "react";
-import { uid } from "uid";
-// import LoginContainer from "./containers/LoginContainer/LoginContainer";
+// import { uid } from "uid";
+import Spiner from "../components/Spiner/Spiner";
 import Form from "./Components/form/form";
 import List from "./Components/list/List";
 import Api from "../api/api";
@@ -13,10 +13,10 @@ class TodoConteiner extends React.Component {
       inputText: "",
       array: [],
       date: new Date(),
-      isTodoItemsCreating: false,
-      isTodoLoading: false,
-      isTodoItemsRemoving: false,
-      isTodoItemsUpdating: false,
+      todoItemsCreating: false,
+      todoLoading: false,
+      todoItemsRemoving: false,
+      todoItemsUpdating: false,
     };
     this.inputRef = React.createRef();
   }
@@ -50,14 +50,14 @@ class TodoConteiner extends React.Component {
     e.preventDefault();
     const oldArray = this.state.array;
     const inputText = this.state.inputText;
-    this.setState({ isTodoItemsCreating: true });
+    this.setState({ todoItemsCreating: true });
     Api.post("/todo", {
       title: inputText,
       date: new Date(),
     })
       .then((response) => {
         //take data from srver
-        this.setState({ isTodoItemsCreating: false });
+        this.setState({ todoItemsCreating: false });
         const { data } = response;
         const newTodo = data;
         // add data to the site component
@@ -68,7 +68,7 @@ class TodoConteiner extends React.Component {
       })
       .catch((error) => {
         // 2. if error
-        this.setState({ isTodoItemsCreating: false });
+        this.setState({ todoItemsCreating: false });
         alert(error.message);
       });
     // add focus to input
@@ -82,10 +82,10 @@ class TodoConteiner extends React.Component {
       (todo) => todo._id === _id
     );
     // 1. send data to the server
-    this.setState({ isTodoItemsRemoving: true });
+    this.setState({ todoItemsRemoving: true });
     Api.remove(`/todo/${_id}`)
       .then(() => {
-        this.setState({ isTodoItemsRemoving: false });
+        this.setState({ todoItemsRemoving: false });
         // 3. remove data component from site
         const newArray = [...this.state.array];
         newArray.splice(findIndexElement, 1);
@@ -93,30 +93,30 @@ class TodoConteiner extends React.Component {
       })
       .catch((error) => {
         // 2. if error
-        this.setState({ isTodoItemsRemoving: false });
+        this.setState({ todoItemsRemoving: false });
         alert(error.message);
       });
 
     this.inputRef.current.focus();
     this.inputRef.current.value = "";
   };
-
+  // sample code for me
   // deleteTodo =(id) => {
   //   this.setState({array: this.state.array.filter(arr => arr.id !== id)})
   // };
 
   onItemCheck = (_id) => (e) => {
     const checked = e.target.checked;
-    this.setState({ isTodoItemsUpdating: _id });
+    this.setState({ todoItemsUpdating: _id });
     Api.patch(`/todo/${_id}`, { completed: checked })
       .then(() => {
-        this.setState({ isTodoItemsUpdating: "" });
-        const carrentTodo = this.state.array.find((todo) => todo._id === _id);
-        carrentTodo.completed = checked;
+        this.setState({ todoItemsUpdating: "" });
+        const currentTodo = this.state.array.find((todo) => todo._id === _id);
+        currentTodo.completed = checked;
         const newArray = [];
         this.state.array.forEach((todo) => {
           if (todo._id === _id) {
-            newArray.push(carrentTodo);
+            newArray.push(currentTodo);
           } else {
             newArray.push(todo);
           }
@@ -125,10 +125,11 @@ class TodoConteiner extends React.Component {
       })
       .catch((error) => {
         // 2. if error
-        this.setState({ isTodoItemsUpdating: false });
+        this.setState({ todoItemsUpdating: false });
         alert(error.message);
       });
   };
+  //  count checked todos
   getComplied = () => {
     return this.state.array.filter((todo) => todo.completed).length;
   };
@@ -138,10 +139,10 @@ class TodoConteiner extends React.Component {
       inputText,
       array,
       date,
-      isTodoItemsCreating,
-      isTodoLoading,
-      isTodoItemsRemoving,
-      isTodoItemsUpdating,
+      todoItemsCreating,
+      todoLoading,
+      todoItemsRemoving,
+      todoItemsUpdating,
     } = this.state;
     const inputRef = this.inputRef;
     return (
@@ -155,26 +156,20 @@ class TodoConteiner extends React.Component {
                 onTextChange={this.onTextChange}
                 onButtonClick={this.onButtonClick}
                 inputRef={inputRef}
-                isTodoItemsCreating={isTodoItemsCreating}
+                todoItemsCreating={todoItemsCreating}
               />
             </div>
             <List
               inputText={inputText}
-              isTodoLoading={isTodoLoading}
+              todoLoading={todoLoading}
               onTextChange={this.onTextChange}
               array={array}
               deleteTodo={this.deleteTodo}
               onItemCheck={this.onItemCheck}
-              isTodoItemsRemoving={isTodoItemsRemoving}
-              isTodoItemsUpdating={isTodoItemsUpdating}
+              todoItemsRemoving={todoItemsRemoving}
+              todoItemsUpdating={todoItemsUpdating}
             />
-            {isTodoLoading ? (
-              <div className="d-flex justify-content-center">
-                <div className="spinner-border" role="status">
-                  <span className="visually-hidden"> </span>
-                </div>
-              </div>
-            ) : null}
+            {todoLoading ? <Spiner /> : null}
             <div className="row">
               <div className="col">
                 <footer>

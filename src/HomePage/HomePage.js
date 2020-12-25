@@ -3,11 +3,7 @@ import TodoConteiner from "../TodoConteiner/TodoConteiner";
 
 class HomePage extends React.Component {
   render() {
-    return (
-      <div>
-        <TodoConteiner />
-      </div>
-    );
+    return <TodoConteiner />;
   }
 }
 

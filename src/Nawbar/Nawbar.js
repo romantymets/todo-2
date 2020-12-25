@@ -3,14 +3,7 @@ import { Link } from "react-router-dom";
 import "./Nawbar.css";
 
 class Nawbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
-    const {} = this.state;
-
     return (
       <div className="container">
         <nav className="navbar navbar-expand-md navbar-light">
@@ -26,7 +19,7 @@ class Nawbar extends React.Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"> </span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">

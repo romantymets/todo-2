@@ -8,8 +8,8 @@ class List extends React.Component {
       array,
       deleteTodo,
       onItemCheck,
-      isTodoItemsRemoving,
-      isTodoItemsUpdating,
+      todoItemsRemoving,
+      todoItemsUpdating,
     } = this.props;
     return (
       <div className="container">
@@ -29,7 +29,7 @@ class List extends React.Component {
                       >
                         <div className={`col-1`}>
                           <input
-                            disabled={isTodoItemsUpdating === todo._id}
+                            disabled={todoItemsUpdating === todo._id}
                             type="checkbox"
                             checked={todo.completed}
                             onChange={onItemCheck(todo._id)}
@@ -39,8 +39,8 @@ class List extends React.Component {
                         <div className="col-8">{todo.title} </div>
                         <div className="col-2">
                           <Button
-                            disabled={isTodoItemsRemoving}
-                            isLoadin={isTodoItemsRemoving}
+                            disabled={todoItemsRemoving}
+                            todoLoadin={todoItemsRemoving}
                             type="buttun"
                             className="btn btn-danger"
                             onClick={() => deleteTodo(todo._id)}

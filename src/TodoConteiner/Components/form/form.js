@@ -9,7 +9,7 @@ class Form extends React.Component {
       onTextChange,
       onButtonClick,
       inputRef,
-      isTodoItemsCreating,
+      todoItemsCreating,
     } = this.props;
     return (
       <>
@@ -27,9 +27,9 @@ class Form extends React.Component {
                   <div className="invalid-feedback">Please enter</div>
                 </div>
                 <Button
-                  disable={isTodoItemsCreating}
-                  isloading={isTodoItemsCreating}
-                  className={"btn btn-primary"}
+                  disable={todoItemsCreating}
+                  isloading={todoItemsCreating}
+                  className="btn btn-primary"
                 >
                   Add Todo
                 </Button>
