@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./List.module.css";
 import Button from "../../../components/Button/Button";
+import Spiner from "../../../components/Spiner/Spiner";
 
 class List extends React.Component {
   render() {
@@ -39,8 +40,8 @@ class List extends React.Component {
                         <div className="col-8">{todo.title} </div>
                         <div className="col-2">
                           <Button
-                            disabled={todoItemsRemoving}
-                            todoLoadin={todoItemsRemoving}
+                            disabled={todoItemsRemoving === todo._id}
+                            isLoading={todoItemsRemoving === todo._id}
                             type="buttun"
                             className="btn btn-danger"
                             onClick={() => deleteTodo(todo._id)}

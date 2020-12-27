@@ -28,7 +28,7 @@ class Form extends React.Component {
                 </div>
                 <Button
                   disable={todoItemsCreating}
-                  isloading={todoItemsCreating}
+                  isLoading={todoItemsCreating}
                   className="btn btn-primary"
                 >
                   Add Todo

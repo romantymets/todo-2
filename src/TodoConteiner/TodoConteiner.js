@@ -5,6 +5,7 @@ import Form from "./Components/form/form";
 import List from "./Components/list/List";
 import Api from "../api/api";
 import "./TodoConteiner.css";
+import Error from "../components/Error/Error";
 
 class TodoConteiner extends React.Component {
   constructor(props) {
@@ -14,9 +15,10 @@ class TodoConteiner extends React.Component {
       array: [],
       date: new Date(),
       todoItemsCreating: false,
-      todoLoading: false,
+      isTodoLoading: false,
       todoItemsRemoving: false,
       todoItemsUpdating: false,
+      errorMessage: "",
     };
     this.inputRef = React.createRef();
   }
@@ -37,8 +39,10 @@ class TodoConteiner extends React.Component {
         this.setState({ array: data });
       })
       .catch((error) => {
-        this.setState({ isTodoLoading: false });
-        alert(error.message);
+        this.setState({
+          isTodoLoading: false,
+          errorMessage: error.message,
+        });
       });
   }
 
@@ -68,8 +72,10 @@ class TodoConteiner extends React.Component {
       })
       .catch((error) => {
         // 2. if error
-        this.setState({ todoItemsCreating: false });
-        alert(error.message);
+        this.setState({
+          errorMessage: error.message,
+          todoItemsCreating: false,
+        });
       });
     // add focus to input
     this.inputRef.current.focus();
@@ -82,10 +88,10 @@ class TodoConteiner extends React.Component {
       (todo) => todo._id === _id
     );
     // 1. send data to the server
-    this.setState({ todoItemsRemoving: true });
+    this.setState({ todoItemsRemoving: _id });
     Api.remove(`/todo/${_id}`)
       .then(() => {
-        this.setState({ todoItemsRemoving: false });
+        this.setState({ todoItemsRemoving: "" });
         // 3. remove data component from site
         const newArray = [...this.state.array];
         newArray.splice(findIndexElement, 1);
@@ -93,8 +99,10 @@ class TodoConteiner extends React.Component {
       })
       .catch((error) => {
         // 2. if error
-        this.setState({ todoItemsRemoving: false });
-        alert(error.message);
+        this.setState({
+          todoItemsRemoving: "",
+          errorMessage: error.message,
+        });
       });
 
     this.inputRef.current.focus();
@@ -125,8 +133,10 @@ class TodoConteiner extends React.Component {
       })
       .catch((error) => {
         // 2. if error
-        this.setState({ todoItemsUpdating: false });
-        alert(error.message);
+        this.setState({
+          todoItemsUpdating: false,
+          errorMessage: error.message,
+        });
       });
   };
   //  count checked todos
@@ -140,9 +150,10 @@ class TodoConteiner extends React.Component {
       array,
       date,
       todoItemsCreating,
-      todoLoading,
+      isTodoLoading,
       todoItemsRemoving,
       todoItemsUpdating,
+      errorMessage,
     } = this.state;
     const inputRef = this.inputRef;
     return (
@@ -158,10 +169,12 @@ class TodoConteiner extends React.Component {
                 inputRef={inputRef}
                 todoItemsCreating={todoItemsCreating}
               />
+              {errorMessage ? (
+                <Error>Server respond: {errorMessage}</Error>
+              ) : null}
             </div>
             <List
               inputText={inputText}
-              todoLoading={todoLoading}
               onTextChange={this.onTextChange}
               array={array}
               deleteTodo={this.deleteTodo}
@@ -169,7 +182,7 @@ class TodoConteiner extends React.Component {
               todoItemsRemoving={todoItemsRemoving}
               todoItemsUpdating={todoItemsUpdating}
             />
-            {todoLoading ? <Spiner /> : null}
+            {isTodoLoading ? <Spiner /> : null}
             <div className="row">
               <div className="col">
                 <footer>
