@@ -57,7 +57,6 @@ class TodoConteiner extends React.Component {
     this.setState({ todoItemsCreating: true });
     Api.post("/todo", {
       title: inputText,
-      date: new Date(),
     })
       .then((response) => {
         //take data from srver
@@ -108,7 +107,7 @@ class TodoConteiner extends React.Component {
     this.inputRef.current.focus();
     this.inputRef.current.value = "";
   };
-  // sample code for me
+  // // sample code for me
   // deleteTodo =(id) => {
   //   this.setState({array: this.state.array.filter(arr => arr.id !== id)})
   // };
