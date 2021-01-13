@@ -6,6 +6,9 @@ import List from "./Components/list/List";
 import Api from "../api/api";
 import "./TodoConteiner.css";
 import Error from "../components/Error/Error";
+import Button from "../components/Button/Button";
+
+const PER_PAGE = 2;
 
 class TodoConteiner extends React.Component {
   constructor(props) {
@@ -30,7 +33,7 @@ class TodoConteiner extends React.Component {
     }, 1000);
     this.setState({ isTodoLoading: true });
     // send a request to the server
-    Api.get("/todo")
+    Api.get(`/todo?limit=${PER_PAGE}`)
       .then((response) => {
         this.setState({ isTodoLoading: false });
         // take data from the server
@@ -45,6 +48,27 @@ class TodoConteiner extends React.Component {
         });
       });
   }
+
+  onLoadMoreButtonClick = () => {
+    Api.get(
+      `/todo?limit=${this.state.array.length + PER_PAGE}&skip=${
+        this.state.array.length
+      }`
+    )
+      .then((response) => {
+        this.setState({ isTodoLoading: false });
+        // take data from the server
+        const { data } = response;
+        //add data to the site
+        this.setState({ array: [...this.state.array, ...data] });
+      })
+      .catch((error) => {
+        this.setState({
+          isTodoLoading: false,
+          errorMessage: error.message,
+        });
+      });
+  };
 
   onTextChange = (e) => {
     this.setState({ inputText: e.target.value });
@@ -182,6 +206,13 @@ class TodoConteiner extends React.Component {
               todoItemsUpdating={todoItemsUpdating}
             />
             {isTodoLoading ? <Spiner /> : null}
+            <button
+              type="buttun"
+              className="btn btn-primary"
+              onClick={this.onLoadMoreButtonClick}
+            >
+              Load more
+            </button>
             <div className="row">
               <div className="col">
                 <footer>

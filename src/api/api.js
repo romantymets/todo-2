@@ -6,7 +6,7 @@ const instance = axios.create({
   headers: { "X-Custom-Header": "foobar" },
 });
 
-const get = (url) => instance.get(url);
+const get = (url, queryParams) => instance.get(`${url}`);
 const post = (url, params) => instance.post(url, params);
 const patch = (url, params) => instance.patch(url, params);
 const remove = (url) => instance.delete(url);
