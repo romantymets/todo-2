@@ -6,7 +6,6 @@ import List from "./Components/list/List";
 import Api from "../api/api";
 import "./TodoConteiner.css";
 import Error from "../components/Error/Error";
-import Button from "../components/Button/Button";
 
 const PER_PAGE = 2;
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nawbar from "./Nawbar/Nawbar";
 import AboutPage from "./AboutPage/AboutPage";
 import HomePage from "./HomePage/HomePage";
+import TodoItemPage from "./TodoItemPage/TodoItemPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
@@ -14,11 +15,14 @@ class App extends React.Component {
           <Router>
             <Nawbar />
             <Switch>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route path="/todoitem/:_id">
+                <TodoItemPage />
+              </Route>
               <Route path="/about">
                 <AboutPage />
-              </Route>
-              <Route path="/">
-                <HomePage />
               </Route>
             </Switch>
           </Router>

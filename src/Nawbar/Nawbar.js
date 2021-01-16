@@ -7,9 +7,11 @@ class Nawbar extends React.Component {
     return (
       <div className="container">
         <nav className="navbar navbar-expand-md navbar-light">
-          <a className="navbar-brand" href="#">
-            MyTODØ
-          </a>
+          <div className="nav-item ">
+            <Link className="nav-link" to="/">
+              MyTODØ
+            </Link>
+          </div>
           <button
             className="navbar-toggler"
             type="button"
@@ -31,6 +33,11 @@ class Nawbar extends React.Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/About">
                   About
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/TodoItem">
+                  TodoItem
                 </Link>
               </li>
               <li className="nav-item">
