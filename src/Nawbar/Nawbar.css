@@ -1,9 +1,11 @@
 .nav-item {
   text-transform: uppercase;
   margin-left: 50px;
+  color: #ccc;
 }
 
 .nav-item a::after {
+  color: #ccc;
   content: "";
   display: block;
   width: 100%;

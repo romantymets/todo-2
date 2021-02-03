@@ -5,7 +5,12 @@ import Button from "../../../components/Button/Button";
 
 class Form extends React.Component {
   render() {
-    const { onTextChange, onButtonClick, inputRef } = this.props;
+    const {
+      onTextChange,
+      onButtonClick,
+      inputRef,
+      todoItemsCreating,
+    } = this.props;
     return (
       <>
         <div className="container">
@@ -21,7 +26,13 @@ class Form extends React.Component {
                   />
                   <div className="invalid-feedback">Please enter</div>
                 </div>
-                <Button className={"btn btn-primary"}>Add Todo</Button>
+                <Button
+                  disable={todoItemsCreating}
+                  isLoading={todoItemsCreating}
+                  className="btn btn-primary"
+                >
+                  Add Todo
+                </Button>
               </form>
             </div>
           </div>
